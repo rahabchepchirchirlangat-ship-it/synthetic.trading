@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deriv Pro Clone - Student Project</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js Library for drawing live charts -->
+    <script src="https://jsdelivr.net"></script>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">deriv<span class="logo-accent">_pro</span></div>
+        <ul class="nav-links">
+            <li><a href="#markets">Markets</a></li>
+            <li><a href="#dashboard">Trading Room</a></li>
+        </ul>
+        <div class="nav-buttons">
+            <button class="btn-secondary" onclick="alert('Demo Mode Active')">Demo Balance: $10,000</button>
+            <button class="btn-primary" onclick="openModal()">Reset Profile</button>
+        </div>
+    </nav>
+
+    <!-- Interactive Trading Dashboard Area -->
+    <main id="dashboard" class="dashboard-container">
+        <!-- Left Side: Control Panel & Search -->
+        <section class="control-panel">
+            <div class="search-box">
+                <h3>Select Asset</h3>
+                <input type="text" id="assetSearch" placeholder="Search (e.g., BTC, ETH, SOL)..." oninput="filterAssets()">
+                <div id="assetList" class="asset-list">
+                    <!-- JavaScript will inject tickers here dynamically -->
+                </div>
+            </div>
+
+            <!-- Execution Panel -->
+            <div class="execution-box">
+                <h3 id="selectedAssetTitle">Bitcoin (BTC)</h3>
+                <div class="price-display">
+                    <span id="dashboardPrice" class="live-price">$0.00</span>
+                </div>
+                <div class="trade-actions">
+                    <button class="btn-buy" onclick="executeTrade('BUY')">Buy / Long</button>
+                    <button class="btn-sell" onclick="executeTrade('SELL')">Sell / Short</button>
+                </div>
+                <div id="tradeLog" class="trade-log">Ready for market simulation...</div>
+            </div>
+        </section>
+
+        <!-- Right Side: Graphic Visualizer -->
+        <section class="chart-panel">
+            <div class="chart-header">
+                <h2>Real-Time Market Activity</h2>
+                <span class="badge-live">● LIVE FEED</span>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="marketChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Popup Box -->
+    <div id="demoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Simulation Profile Reset</h2>
+            <p>Would you like to clear your order logs and reset your virtual balance to $10,000?</p>
+            <button class="btn-primary" style="width: 100%; margin-top: 15px;" onclick="resetSimulation()">Confirm Reset</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
