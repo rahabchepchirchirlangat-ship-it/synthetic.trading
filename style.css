@@ -1,0 +1,125 @@
+:root {
+    --bg-main: #101114;
+    --bg-card: #16181c;
+    --bg-input: #1e2026;
+    --coral-red: #ff444f;
+    --coral-hover: #e03a44;
+    --trend-green: #00c853;
+    --trend-red: #ff3d00;
+    --text-white: #ffffff;
+    --text-gray: #999ea8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-white);
+    overflow-x: hidden;
+}
+
+/* Navbar Layout */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: var(--bg-main);
+    border-bottom: 1px solid #24262c;
+}
+
+.logo { font-size: 22px; font-weight: 800; }
+.logo-accent { color: var(--coral-red); }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: var(--text-gray); text-decoration: none; font-size: 14px; }
+
+/* Buttons */
+.btn-primary { background-color: var(--coral-red); color: white; border: none; padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+.btn-primary:hover { background-color: var(--coral-hover); }
+.btn-secondary { background: transparent; color: white; border: 1px solid #414652; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
+
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 5%;
+    gap: 25px;
+    min-height: calc(100vh - 70px);
+}
+
+.control-panel {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chart-panel {
+    flex: 2;
+    min-width: 500px;
+    background-color: var(--bg-card);
+    border: 1px solid #24262c;
+    border-radius: 8px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Search Box Component */
+.search-box, .execution-box {
+    background-color: var(--bg-card);
+    border: 1px solid #24262c;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--bg-input);
+    border: 1px solid #333;
+    color: white;
+    border-radius: 4px;
+}
+
+.asset-list {
+    margin-top: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.asset-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.asset-item:hover { background-color: var(--bg-input); }
+.asset-item.active { border-left: 3px solid var(--coral-red); background-color: #24262c; }
+
+/* Execution & Trade Controls */
+.price-display { margin: 15px 0; font-size: 32px; font-weight: bold; color: var(--trend-green); }
+.trade-actions { display: flex; gap: 15px; }
+.btn-buy, .btn-sell { flex: 1; padding: 12px; border: none; border-radius: 4px; font-weight: bold; color: white; cursor: pointer; }
+.btn-buy { background-color: var(--trend-green); }
+.btn-sell { background-color: var(--trend-red); }
+.trade-log { margin-top: 15px; padding: 10px; background: var(--bg-main); border-radius: 4px; font-size: 13px; color: var(--text-gray); text-align: center; }
+
+/* Chart Sizing */
+.chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.badge-live { color: var(--trend-green); font-size: 12px; font-weight: bold; }
+.canvas-wrapper { position: relative; flex-grow: 1; height: 350px; width: 100%; }
+
+/* Modal Setup */
+.modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 1000; }
+.modal-content { background: var(--bg-card); padding: 30px; border-radius: 8px; text-align: center; max-width: 400px; width: 90%; position: relative; }
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; color: var(--text-gray); }
