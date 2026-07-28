@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTrader | Deriv Live API Project</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js framework wrapper for high frequency tick graph rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Deriv App Style Header Top Navigation Bar -->
+    <nav class="deriv-navbar">
+        <div class="nav-left">
+            <div class="deriv-logo">deriv<span class="app-tag">DTrader</span></div>
+            <div class="asset-selector-dropdown" onclick="toggleAssetMenu()">
+                <span id="currentAssetDisplay">Volatility 100 Index</span>
+                <span class="dropdown-arrow">▼</span>
+                <!-- Selection dropdown items referencing Deriv Symbol IDs -->
+                <div id="assetDropdownMenu" class="asset-dropdown-content">
+                    <div class="dropdown-item" onclick="changeDerivAsset('R_100')">Volatility 100 Index</div>
+                    <div class="dropdown-item" onclick="changeDerivAsset('R_75')">Volatility 75 Index</div>
+                    <div class="dropdown-item" onclick="changeDerivAsset('R_10')">Volatility 10 Index</div>
+                </div>
+            </div>
+            <div class="live-spot-badge">
+                <span class="spot-label">Live Spot:</span>
+                <span id="navSpotPrice" class="spot-value">Connecting...</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <div class="account-badge">
+                <span class="badge-type">Demo</span>
+                <span id="walletBalance" class="balance-amount">$10,000.00 USD</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Live Streaming Canvas Layout Wrapper -->
+    <main class="trading-workspace">
+        <section class="chart-canvas-area">
+            <div class="chart-metadata">
+                <h2 id="chartAssetTitle">Volatility 100 Index</h2>
+                <div class="tick-change-stats">
+                    <span id="priceTickChange" class="neutral">Waiting for stream...</span>
+                </div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="derivTickChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Right Side: Order Side-panel Panel -->
+        <section class="deriv-execution-panel">
+            <div class="panel-section">
+                <label class="input-label">Trade Type</label>
+                <div class="trade-type-display">Rise / Fall</div>
+            </div>
+
+            <div class="panel-section">
+                <label class="input-label">Duration</label>
+                <div class="duration-toggle-group">
+                    <button class="tab-btn active">Ticks</button>
+                </div>
+                <div class="input-incrementer-box">
+                    <input type="number" id="durationValue" value="5" readonly>
+                    <span class="input-unit">Ticks</span>
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <label class="input-label">Stake Amount</label>
+                <div class="input-incrementer-box">
+                    <input type="number" id="stakeValue" value="10">
+                    <span class="input-unit">USD</span>
+                </div>
+            </div>
+
+            <div class="execution-actions-wrapper">
+                <button class="deriv-btn-rise" onclick="submitDerivContract('RISE')">
+                    <div class="btn-top-info">▲ Rise</div>
+                    <div class="btn-payout-info">Payout: +95.4%</div>
+                </button>
+                <button class="deriv-btn-fall" onclick="submitDerivContract('FALL')">
+                    <div class="btn-top-info">▼ Fall</div>
+                    <div class="btn-payout-info">Payout: +95.4%</div>
+                </button>
+            </div>
+
+            <div class="statement-log-panel">
+                <h4>Recent Positions Log</h4>
+                <div id="positionsHistoryLog" class="positions-empty-text">No active contract entries...</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
